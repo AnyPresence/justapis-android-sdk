@@ -94,7 +94,7 @@ public class APAndroidGateway {
 
 
     /**
-     * @see APGateway#post(String)
+     * @see APGateway#post()
      */
     public void post() {
         try {
@@ -103,6 +103,7 @@ public class APAndroidGateway {
             e.printStackTrace();
         }
     }
+
 
     /**
      * Sends post request
@@ -138,6 +139,57 @@ public class APAndroidGateway {
     public <T> void post(String url, APAndroidCallback<T> callback) {
         try {
             execute(url, HTTPMethod.POST, callback);
+        } catch (RequestException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @see APGateway#put()
+     */
+    public void put() {
+        try {
+            execute(mAPGateway.getUrl(), HTTPMethod.PUT, null);
+        } catch (RequestException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Sends put request
+     *
+     * @param url
+     *            relative url to connect to
+     */
+    public void put(String url, Map<String,String> body) {
+        try {
+            execute(url, HTTPMethod.PUT, body, null, null);
+        } catch (RequestException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Sends put request
+     *
+     * @param callback
+     * @param <T>
+     */
+    public <T> void put(APAndroidCallback<T> callback) {
+        put(mAPGateway.getUrl(), callback);
+    }
+
+    /**
+     * Sends post request
+     *
+     * @param url
+     * @param callback
+     * @param <T>
+     */
+    public <T> void put(String url, APAndroidCallback<T> callback) {
+        try {
+            execute(url, HTTPMethod.PUT, callback);
         } catch (RequestException e) {
             e.printStackTrace();
         }
